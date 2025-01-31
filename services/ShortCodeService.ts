@@ -76,8 +76,6 @@ export class ShortCodeService {
 
     const id = await this.makeShortCode();
 
-    console.error({ id });
-
     const result = await create<ShortCode>(shortCodeEntity, kv, { ...shortCode, id});
 
     if (!result || !result?.value) throw new Error("Failed to create shortCode");

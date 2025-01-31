@@ -34,8 +34,6 @@ export default function GiphySearch({ defaultSearch = '', onChangeGif, apiKey }:
       //     limit: MAX_SIZE,
       //   });
 
-      //   console.error('here');
-
       //   data = data.concat(nonOfficeData);
       // }
 
@@ -66,12 +64,10 @@ export default function GiphySearch({ defaultSearch = '', onChangeGif, apiKey }:
     <div>
       {!selectedGif.gifId ? (
         <div>
-      <input onChange={(e) => { const value = (e?.target as HTMLInputElement).value; console.error(value); setSearch(value);}}>Gif Search</input><br /><br />
+      <input onChange={(e) => { const value = (e?.target as HTMLInputElement).value; setSearch(value);}}>Gif Search</input><br /><br />
       {gifs ? gifs.map((gif: any, key: any) => (
         <GiphyComponent onClick={(e) => {
           const index = (e?.target as HTMLInputElement)?.id;
-          console.error(index);
-          console.error({gifs});
           setSelectedGif({ index, gifId: gifs[index].id, gif: gifs[index] });
           onChangeGif(gifs[index]);
         }} 
