@@ -1,13 +1,12 @@
 import { GiphyFetch } from "@giphy/js-fetch-api";
 import { useEffect, useState } from "preact/hooks";
 
-export default function GiphyComponent({ gifId, index = '0', onClick = (e) => {} }: { gifId: string; index?: string; onClick?: (e: Event) => void; }) {
+export default function GiphyComponent({ gifId, index = '0', onClick = (e) => {}, apiKey }: { gifId: string; index?: string; onClick?: (e: Event) => void; apiKey: string; }) {
   const [gif, setGif] = useState(null as any);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const GIPHY_API_KEY = '2c3ZO2E9gRO4m8IWuBXmQJWc6DmiXVqb';
-  const giphyFetch = new GiphyFetch(GIPHY_API_KEY);
+  const giphyFetch = new GiphyFetch(apiKey);
 
 
   const fetchGifById = async () => {
@@ -42,7 +41,7 @@ export default function GiphyComponent({ gifId, index = '0', onClick = (e) => {}
     <div>
       {gif ? (
         <div class="border border-gray-300/70 hover:border-gray-900 hover:bg-gray-50 bg-white rounded-lg shadow-md shadow-gray-400/20 overflow-hidden">
-          <img onClick={onClick} id={index} src={gif.images.fixed_height.url} alt={gif.title} />
+          <img onClick={onClick} id={index} src={gif.images.fixed_width.url} alt={gif.title} />
         </div>
       ) : (
         <p>No GIF found</p>

@@ -2,7 +2,7 @@ import { GiphyFetch } from "@giphy/js-fetch-api";
 import { useEffect, useState } from "preact/hooks";
 import GiphySearch from "@/islands/GiphySearch.tsx";
 
-export default function NewShortCodeForm() {
+export default function NewShortCodeForm({ apiKey }: { apiKey: string; }) {
   const [gif, setGif] = useState(null as any);
   // const [shortCode, setShortCode] = useState();
   const [ url, setUrl ] = useState('');
@@ -17,7 +17,7 @@ export default function NewShortCodeForm() {
         <h3></h3>
         <div>
           {/* <GiphyComponent gifId="fpXxIjftmkk9y" /> */}
-          <GiphySearch defaultSearch="michael" onChangeGif={(gif: any) => { setGif(gif) }} />
+          <GiphySearch apiKey={apiKey} defaultSearch="michael" onChangeGif={(gif: any) => { setGif(gif) }} />
           <div>
             <label htmlFor="url">Url:</label>
             <input id="url" onKeyUp={(e) => { setUrl((e?.target as HTMLInputElement).value) }} />
@@ -37,7 +37,7 @@ export default function NewShortCodeForm() {
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ url, title, redirectTime, gif: { id: gif.id, title: gif.title, url: gif.images.fixed_height.url }})
+              body: JSON.stringify({ url, title, redirectTime, gif: { id: gif.id, title: gif.title, url: gif.images.original.url }})
             });
 
             const shortCode = await response.json();

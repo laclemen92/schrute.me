@@ -1,9 +1,20 @@
-import GiphyComponent from "@/islands/GiphyComponent.tsx";
-import GiphySearch from "@/islands/GiphySearch.tsx";
 import NewShortCodeForm from "@/islands/NewShortCodeForm.tsx";
+import { Handlers, PageProps } from "$fresh/server.ts";
 
 
-export default function Short() {
+interface Props {
+  GIPHY_API_KEY: string;
+}
+
+export const handler: Handlers<Props> = {
+  async GET(_req, ctx) {
+    const GIPHY_API_KEY = Deno.env.get('GIPHY_API_KEY') || '';
+
+    return ctx.render({ GIPHY_API_KEY });
+  }
+}
+
+export default function Short({ data }: PageProps<Props | null>) {
 
   // so let's let them search for a gif or click on "see what's popular" where we just use the trending ones
   // in the office channel if that's possible? or just an empty search?
@@ -21,7 +32,7 @@ export default function Short() {
   return (
     <div class="px-4 py-8 mx-auto">
       <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
-        <NewShortCodeForm />
+        <NewShortCodeForm apiKey={data?.GIPHY_API_KEY} />
       </div>
     </div>
   );

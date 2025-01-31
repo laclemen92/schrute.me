@@ -1,5 +1,4 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import GiphyComponent from "@/islands/GiphyComponent.tsx";
 import { SignedInState } from "@/plugins/session.ts";
 import type { ShortCode } from "@/models/ShortCode.ts";
 import { ShortCodeService } from "@/services/ShortCodeService.ts";
