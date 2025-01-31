@@ -2,7 +2,6 @@ import { User, UserAuthConfigs, UserRoles } from "@/models/User.ts";
 import { Avatar } from "@/components/Avatar.tsx";
 import { Button } from "@/islands/Button.tsx";
 import IconPlus from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/plus.tsx";
-import IconBrandGithubFilled from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/brand-github-filled.tsx";
 import IconBrandGoogleFilled from "https://deno.land/x/tabler_icons_tsx@0.0.7/tsx/brand-google-filled.tsx";
 
 export interface HeaderProps {
@@ -50,14 +49,6 @@ export function Header(props: HeaderProps) {
                         >
                           <IconBrandGoogleFilled class="w-6 h-6" />
                         </Button>
-                        <div class="flex py-2">- OR -</div>
-                        <Button
-                          href={`/signin/github`}
-                          htmlClass="block px-4 py-2 text-gray-400 hover:text-gray-900"
-                          type="anchor"
-                        >
-                          <IconBrandGithubFilled class="w-6 h-6" />
-                        </Button>
                       </li>
                     </ul>
                   </div>
@@ -71,12 +62,8 @@ export function Header(props: HeaderProps) {
                     dataDropdownPlacement="bottom-end"
                   >
                     <Avatar
-                      login={(props?.sessionUser?.login &&
-                          (props?.sessionUser?.authConfig ===
-                              UserAuthConfigs.GITHUB ||
-                            !props?.sessionUser?.authConfig))
-                        ? props?.sessionUser?.login
-                        : null}
+                      src={(props?.sessionUser?.picture || '')}
+                      alt={`Image for ${props.sessionUser.login}`}
                       size={32}
                     />
                   </Button>
@@ -91,13 +78,9 @@ export function Header(props: HeaderProps) {
                       <li class="flex flex-col mb-4">
                         <div class="flex items-center justify-center">
                           <Avatar
-                            login={(props?.sessionUser?.login &&
-                                (props?.sessionUser?.authConfig ===
-                                    UserAuthConfigs.GITHUB ||
-                                  !props?.sessionUser?.authConfig))
-                              ? props?.sessionUser?.login
-                              : null}
-                            size={96}
+                            src={(props?.sessionUser?.picture || '')}
+                            alt={`Image for ${props.sessionUser.login}`}
+                            size={64}
                             class="mx-4 my-2"
                           />
                         </div>
@@ -109,11 +92,6 @@ export function Header(props: HeaderProps) {
                           )
                           : null}
                         <div class="flex items-center justify-center text-gray-400 font-semibold">
-                          {!props.sessionUser.authConfig ||
-                              props.sessionUser.authConfig ===
-                                UserAuthConfigs.GITHUB
-                            ? <IconBrandGithubFilled class="h-4 w-4 mr-1" />
-                            : null}
                           <div>
                             {props.sessionUser.login}
                           </div>
@@ -161,7 +139,7 @@ export function Header(props: HeaderProps) {
                           </li>
                         )
                         : null}
-                      <li>
+                      {/* <li>
                         <Button
                           href="/posts/favorites"
                           type="anchor"
@@ -169,7 +147,7 @@ export function Header(props: HeaderProps) {
                         >
                           Favorites
                         </Button>
-                      </li>
+                      </li> */}
                       <li>
                         <Button
                           href="/signout?success_url=/"

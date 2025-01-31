@@ -9,19 +9,17 @@ interface AvatarProps {
 }
 
 export function Avatar(
-  { login, size, class: className, src, alt }: AvatarProps,
+  { size, class: className, src, alt }: AvatarProps,
 ) {
   return (
     <>
-      {login || src
+      {src
         ? (
           <img
             height={size}
             width={size}
-            src={login
-              ? `https://avatars.githubusercontent.com/${login}?s=${size * 2}`
-              : src}
-            alt={login ? `Avatar for ${login}` : alt}
+            src={src}
+            alt={alt}
             class={`rounded-full inline-block aspect-square size-[${size}px] ${
               className ?? ""
             }`}

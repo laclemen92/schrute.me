@@ -37,6 +37,7 @@ interface GoogleUser {
   family_name?: string;
   email: string;
   email_verified: boolean;
+  picture?: string;
 }
 
 /**
@@ -47,6 +48,7 @@ export async function getGoogleUser(accessToken: string) {
   const resp = await fetch("https://openidconnect.googleapis.com/v1/userinfo", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
+  console.error('here');
   if (!resp.ok) {
     const { message } = await resp.json();
     throw new BadRequestError(message);

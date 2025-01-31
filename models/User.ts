@@ -7,7 +7,6 @@ export enum UserRoles {
 }
 
 export enum UserAuthConfigs {
-  GITHUB = "github",
   GOOGLE = "google",
 }
 
@@ -19,6 +18,7 @@ const userSchema = z.object({
   name: z.string().optional(),
   authConfig: z.nativeEnum(UserAuthConfigs),
   accessToken: z.string(),
+  picture: z.string().optional(),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
 }).strict();

@@ -15,7 +15,7 @@ export class UserService {
       login: crypto.randomUUID(),
       sessionId: crypto.randomUUID(),
       role: UserRoles.USER,
-      authConfig: UserAuthConfigs.GITHUB,
+      authConfig: UserAuthConfigs.GOOGLE,
       accessToken: crypto.randomUUID(),
     };
   }
