@@ -8,7 +8,7 @@ export default defineApp<State>((_, ctx) => {
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>fresh-url-shortener</title>
+        <title>Schrute.me</title>
         <link rel="stylesheet" href="/styles.css" />
         <script
           defer
