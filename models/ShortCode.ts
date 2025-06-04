@@ -11,7 +11,7 @@ const shortCodeSchema = z.object({
     title: z.string(),
     id: z.string(),
   }),
-  userLogin: z.string().nullable(),
+  userLogin: z.string(),
   createdAt: z.date().optional(),
   clickCount: z.number().optional().default(0),
   lastClickedAt: z.date().optional(),

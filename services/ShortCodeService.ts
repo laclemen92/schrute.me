@@ -81,7 +81,6 @@ export class ShortCodeService {
       id,
       createdAt: new Date(),
       clickCount: 0,
-      userLogin: shortCode.userLogin || null, // Ensure null instead of empty string
     });
 
     if (!result || !result?.value) {
@@ -108,11 +107,10 @@ export class ShortCodeService {
       userLogin,
     });
     
-    // Filter out any entries with null userLogin (shouldn't happen with the query, but extra safety)
-    // and sort by creation date, newest first
+    // Filter out anonymous users and sort by creation date, newest first
     return result
       .map(r => r.value)
-      .filter(shortCode => shortCode.userLogin === userLogin && shortCode.userLogin !== null)
+      .filter(shortCode => shortCode.userLogin === userLogin && shortCode.userLogin !== "anonymous")
       .sort((a, b) => {
         const aDate = a.createdAt ? new Date(a.createdAt).getTime() : 0;
         const bDate = b.createdAt ? new Date(b.createdAt).getTime() : 0;

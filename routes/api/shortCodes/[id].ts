@@ -26,7 +26,7 @@ export const handler: Handlers<undefined, SignedInState> = {
       );
     }
 
-    if (existingShortCode.userLogin !== ctx.state.sessionUser.login || existingShortCode.userLogin === null) {
+    if (existingShortCode.userLogin !== ctx.state.sessionUser.login || existingShortCode.userLogin === "anonymous") {
       return Response.json(
         { error: "Access denied" },
         { status: STATUS_CODE.Forbidden },
@@ -114,7 +114,7 @@ export const handler: Handlers<undefined, SignedInState> = {
       );
     }
 
-    if (existingShortCode.userLogin !== ctx.state.sessionUser.login || existingShortCode.userLogin === null) {
+    if (existingShortCode.userLogin !== ctx.state.sessionUser.login || existingShortCode.userLogin === "anonymous") {
       return Response.json(
         { error: "Access denied" },
         { status: STATUS_CODE.Forbidden },

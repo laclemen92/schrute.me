@@ -56,7 +56,7 @@ export const handler: Handlers<undefined, SignedInState> = {
     }
 
     const shortCode = {
-      userLogin: ctx?.state?.sessionUser?.login || null,
+      userLogin: ctx?.state?.sessionUser?.login || "anonymous",
       url: sanitizeUrl(body.url),
       title: body.title.trim(),
       redirectTime: body.redirectTime,
