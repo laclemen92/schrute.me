@@ -1,10 +1,6 @@
 // Copyright 2023-2024 the Deno authors. All rights reserved. MIT license.
 import type { Plugin } from "$fresh/server.ts";
-import {
-  handleCallback,
-  signIn,
-  signOut,
-} from "kv_oauth/mod.ts";
+import { handleCallback, signIn, signOut } from "kv_oauth/mod.ts";
 import { UserService } from "@/services/UserService.ts";
 import { type User, UserAuthConfigs, UserRoles } from "@/models/User.ts";
 import { getGoogleUser, googleOAuthConfig } from "@/utils/google.ts";
@@ -53,11 +49,15 @@ export default {
           };
 
           await userService.createUser(user);
-        } else {
+        } else if (user) {
           if (googleUser.name) {
             user.name = googleUser.name;
           }
-          await userService.updateUser({...user, name: googleUser.name, picture: googleUser.picture});
+          await userService.updateUser({
+            ...user,
+            name: googleUser.name,
+            picture: googleUser.picture,
+          });
           await userService.updateUserSession(user, sessionId);
         }
 

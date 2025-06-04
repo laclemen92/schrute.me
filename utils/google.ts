@@ -48,7 +48,7 @@ export async function getGoogleUser(accessToken: string) {
   const resp = await fetch("https://openidconnect.googleapis.com/v1/userinfo", {
     headers: { authorization: `Bearer ${accessToken}` },
   });
-  console.error('here');
+  console.error("here");
   if (!resp.ok) {
     const { message } = await resp.json();
     throw new BadRequestError(message);

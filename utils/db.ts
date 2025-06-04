@@ -1,3 +1,5 @@
+/// <reference lib="deno.unstable" />
+
 const DENO_KV_PATH_KEY = "DENO_KV_PATH";
 let path = undefined;
 if (

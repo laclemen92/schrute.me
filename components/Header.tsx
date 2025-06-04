@@ -1,4 +1,4 @@
-import { User, UserAuthConfigs, UserRoles } from "@/models/User.ts";
+import { User, UserRoles } from "@/models/User.ts";
 import { Avatar } from "@/components/Avatar.tsx";
 import { Button } from "@/islands/Button.tsx";
 import IconPlus from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/plus.tsx";
@@ -62,7 +62,7 @@ export function Header(props: HeaderProps) {
                     dataDropdownPlacement="bottom-end"
                   >
                     <Avatar
-                      src={(props?.sessionUser?.picture || '')}
+                      src={props?.sessionUser?.picture || ""}
                       alt={`Image for ${props.sessionUser.login}`}
                       size={32}
                     />
@@ -78,7 +78,7 @@ export function Header(props: HeaderProps) {
                       <li class="flex flex-col mb-4">
                         <div class="flex items-center justify-center">
                           <Avatar
-                            src={(props?.sessionUser?.picture || '')}
+                            src={props?.sessionUser?.picture || ""}
                             alt={`Image for ${props.sessionUser.login}`}
                             size={64}
                             class="mx-4 my-2"
@@ -96,6 +96,22 @@ export function Header(props: HeaderProps) {
                             {props.sessionUser.login}
                           </div>
                         </div>
+                      </li>
+                      <li class="flex justify-between hover:bg-gray-100">
+                        <Button
+                          href="/dashboard"
+                          htmlClass="flex flex-1 block px-4 py-2 text-base"
+                          type="anchor"
+                        >
+                          📊 Dashboard
+                        </Button>
+                        <Button
+                          href="/new/short"
+                          htmlClass="block px-4 py-2 text-gray-400 hover:text-gray-900"
+                          type="anchor"
+                        >
+                          <IconPlus class="w-5 h-5" />
+                        </Button>
                       </li>
                       {props.sessionUser &&
                           props.sessionUser.role === UserRoles.ADMIN
@@ -139,7 +155,8 @@ export function Header(props: HeaderProps) {
                           </li>
                         )
                         : null}
-                      {/* <li>
+                      {
+                        /* <li>
                         <Button
                           href="/posts/favorites"
                           type="anchor"
@@ -147,7 +164,8 @@ export function Header(props: HeaderProps) {
                         >
                           Favorites
                         </Button>
-                      </li> */}
+                      </li> */
+                      }
                       <li>
                         <Button
                           href="/signout?success_url=/"

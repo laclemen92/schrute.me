@@ -1,7 +1,13 @@
 import { User, UserAuthConfigs, UserRoles } from "@/models/User.ts";
 import { kv } from "@/utils/db.ts";
 import { ulid } from "$std/ulid/mod.ts";
-import { create, findMany, FindManyOptions, findUnique, update } from "@laclemen92/kvm";
+import {
+  create,
+  findMany,
+  type FindManyOptions,
+  findUnique,
+  update,
+} from "@laclemen92/kvm";
 import { userEntity } from "@/models/User.ts";
 
 export class UserService {

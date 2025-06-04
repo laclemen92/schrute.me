@@ -9,10 +9,12 @@ const shortCodeSchema = z.object({
   gif: z.object({
     url: z.string(),
     title: z.string(),
-    id: z.string()
+    id: z.string(),
   }),
-  userLogin: z.string(),
+  userLogin: z.string().nullable(),
   createdAt: z.date().optional(),
+  clickCount: z.number().optional().default(0),
+  lastClickedAt: z.date().optional(),
 }).strict();
 
 export const shortCodeEntity: KVMEntity<typeof shortCodeSchema.shape> = {

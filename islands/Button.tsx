@@ -85,6 +85,7 @@ export function Button(props: ButtonProps) {
     return (
       <>
         <button
+          type="button"
           class={`${classes.join(" ") || ""}`}
           onClick={props.onClick}
           data-dropdown-toggle={props.dataDropdownToggle || ""}
@@ -109,6 +110,7 @@ export function Button(props: ButtonProps) {
   } else if (props.type === "avatar") {
     return (
       <button
+        type="button"
         onClick={props.onClick}
         data-dropdown-toggle={props.dataDropdownToggle || ""}
         data-dropdown-placement={props.dataDropdownPlacement || ""}
